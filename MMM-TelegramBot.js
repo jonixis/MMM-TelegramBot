@@ -493,7 +493,6 @@ Module.register("MMM-TelegramBot", {
         break;
       case "TELBOT_TELL_ADMIN":
         if (typeof payload == "string") {
-          payload += "\nFrom *" + sender.name + "*";
           let r = {
             chat_id: null,
             type: "TEXT",
@@ -503,17 +502,17 @@ Module.register("MMM-TelegramBot", {
           this.say(r, true);
         }
         break;
-    case "TELBOT_TELL_GROUP":
+      case "TELBOT_TELL_GROUP":
       if (typeof payload == "string") {
-        payload += "\nFrom *" + sender.name + "*";
-        let r = {
-          chat_id: this.config.groupChatId,
-          type: "TEXT",
-          text: payload,
-          option: { parse_mode: "Markdown" }
-        };
-        this.say(r);
+          let r = {
+            chat_id: this.config.groupChatId,
+            type: "TEXT",
+            text: payload,
+            option: { parse_mode: "Markdown" }
+          };
+          this.say(r);
       }
+      break;
     }
   }
 });
